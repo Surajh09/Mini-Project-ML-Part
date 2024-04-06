@@ -9,3 +9,4 @@ pytz
 pandas
 sqlparse
 dj-database-url
+guicorn
