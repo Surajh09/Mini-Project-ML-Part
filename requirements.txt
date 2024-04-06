@@ -1,13 +1,11 @@
 asgiref
 click
-cmake
 Django
 django-filter
-dlib
-face-recognition
-face-recognition-models
 numpy
 opencv-python
 Pillow
 pytz
+pandas
 sqlparse
+dj-database-url

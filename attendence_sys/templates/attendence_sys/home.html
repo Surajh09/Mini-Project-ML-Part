@@ -168,7 +168,27 @@
           >Click Here</a>
       </div>
     </div>
-    
+    <div class="col-md-6" style="margin-top: 20px">
+      <div class="card card-body">
+        <div class="container">
+          {% for message in messages %} {% if message.tags == 'error' %}
+          <div class="alert alert-danger">{{ message }}</div>
+          {% else %}
+          <div class="alert alert-success">{{ message }}</div>
+          {% endif %} {% endfor %}
+  
+            <center><h3>Import Students from Excel</h3></center>
+                <a
+                  href="{% url 'import_students' %}"
+                  class="btn btn-block btn-info"
+                  >Import Students</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

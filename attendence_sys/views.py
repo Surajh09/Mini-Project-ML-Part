@@ -6,7 +6,6 @@ from django.core.files.storage import FileSystemStorage
 import pandas as pd
 import sqlite3
 
-
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -55,21 +54,33 @@ def home(request):
     return render(request, 'attendence_sys/home.html', context)
 
 
-
 def import_students(request):
     if request.method == 'POST':
         form = ExtractStudentForm(request.POST, request.FILES)
         if form.is_valid():
             excel_file = request.FILES['excel_file']
             try:
-                with fs == FileSystemStorage() as storage:
+                # Save the uploaded file
+                with FileSystemStorage() as storage:
                     file_name = storage.save(excel_file.name, excel_file)
                     try:
+                        # Read the Excel file into a pandas DataFrame
                         df = pd.read_excel(storage.path(file_name))
-                        student_data = df.to_dict(orient='records')
-                        Student.objects.bulk_create([Student(**data) for data in student_data])
+
+                        # Iterate through DataFrame rows and create Student objects
+                        for index, row in df.iterrows():
+                            Student.objects.create(
+                                firstname=row['firstname'],
+                                lastname=row['lastname'],
+                                registration_id=row['registration_id'],
+                                branch=row['branch'],
+                                year=row['year'],
+                                section=row['section'],
+                                name=f"{row['firstname']} {row['lastname']}"
+                            )
+
                         messages.success(request, 'Students imported successfully!')
-                        return redirect('home')  # Replace with desired redirect URL
+                        return redirect('home')  # Redirect to desired URL after import
                     except pd.errors.ParserError as e:
                         messages.error(request, f'Error parsing Excel file: {e}')
             except Exception as e:
