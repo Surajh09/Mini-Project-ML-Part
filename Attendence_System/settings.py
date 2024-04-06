@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-DATABASE['default'] = dj_database_url.parse("postgres://mini_project_xx2b_user:kjkTjpf5ek1NQjyhWT5vY5thuletxDsv@dpg-co7oi7sf7o1s738k28m0-a.oregon-postgres.render.com/mini_project_xx2b")
+DATABASES['default'] = dj_database_url.parse("postgres://mini_project_xx2b_user:kjkTjpf5ek1NQjyhWT5vY5thuletxDsv@dpg-co7oi7sf7o1s738k28m0-a.oregon-postgres.render.com/mini_project_xx2b")
 
 
 
