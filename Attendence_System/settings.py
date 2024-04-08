@@ -26,7 +26,7 @@ SECRET_KEY = '16)7t#^!ebgfc9a==7+5jp=z)y!it@2ke%6@0k@77&pc8!ft@r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://student-monitoring-system-surajh09.onrender.com"]
 
 
 # Application definition
