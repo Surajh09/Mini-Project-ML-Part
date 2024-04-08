@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django import forms
+import pandas as pd
 from .models import *
 
 class CreateStudentForm(ModelForm):
