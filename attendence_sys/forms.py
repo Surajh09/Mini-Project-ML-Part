@@ -1,6 +1,5 @@
 from django.forms import ModelForm
 from django import forms
-import pandas as pd
 from .models import *
 
 class CreateStudentForm(ModelForm):
@@ -23,6 +22,11 @@ class ExtractStudentForm(ModelForm):
             raise forms.ValidationError('Invalid file format. Please upload an Excel file (.xlsx or .xls).')
 
         return excel_file
+    
+    def your_view(request):
+        form = ExtractStudentForm()  # Create an instance of the form
+        import_students_url = 'import_students'  # URL name for the import_students view
+        return render(request, 'upload_file.html', {'form': form, 'import_students_url': import_students_url})
 
     def save(self):
         excel_file = self.cleaned_data['excel_file']

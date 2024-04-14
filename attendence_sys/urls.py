@@ -11,7 +11,7 @@ urlpatterns = [
     path('searchattendence/', views.searchAttendence, name='searchattendence'),
     path('account/', views.facultyProfile, name='account'),
     path('import_students/', views.import_students, name='import_students'),
-    
+   
     path('updateStudentRedirect/', views.updateStudentRedirect, name='updateStudentRedirect'),
     path('updateStudent/', views.updateStudent, name='updateStudent'),
     path('attendence/', views.takeAttendence, name='attendence'),

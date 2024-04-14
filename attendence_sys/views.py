@@ -16,7 +16,6 @@ from .forms import ExtractStudentForm
 from .models import Student, Attendence
 from .filters import AttendenceFilter
 
-# from django.views.decorators import gzip
 
 from .recognizer import Recognizer
 from datetime import date
@@ -93,7 +92,7 @@ def import_students(request):
             messages.error(request, 'Please correct errors in the form.')
     else:
         # Handle GET requests explicitly
-        form = ExtractStudentForm()
+        form = ExtractStudentForm() 
 
     return render(request, 'upload_file.html', {'form': form})
 

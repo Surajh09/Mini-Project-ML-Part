@@ -59,11 +59,16 @@ class Student(models.Model):
     section = models.CharField(max_length=100, null=True, choices=SECTION)
     profile_pic = models.ImageField(upload_to=student_directory_path ,null=True, blank=True)
    
-    name = models.CharField(max_length=255)
+    class Student(models.Model):
+        firstname = models.CharField(max_length=100)
+        lastname = models.CharField(max_length=100)
+        age = models.IntegerField()
+        grade = models.CharField(max_length=10)
 
 
     def __str__(self):
         return str(self.registration_id)
+        return self.name
 
 class Attendence(models.Model):
     # faculty = models.ForeignKey(Faculty, null = True, on_delete= models.SET_NULL)
