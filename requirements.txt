@@ -5,7 +5,7 @@ colorama
 dj-database-url
 Django
 django-cors-headers
-django-filter
+django-filter
 et-xmlfile
 gunicorn
 jdcal
@@ -23,7 +23,6 @@ psycopg2
 python-dateutil
 pytz
 six
-sqlparse
 typing_extensions
 tzdata
 white
