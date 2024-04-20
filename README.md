@@ -1,21 +1,28 @@
-# Face Verification Based Attendance System
-## About
-In this Attendance System the attendance for students is marked using Face verification. The Faculty has the permission to take Attendance, add a student, modify student details. The Faculty can also search for attendance of a student using Multiparameter Search, by specifying the student ID, date of attendance, period of Attendance.<br>
-The credentials for the Faculty are provided by the superuser who has access to the whole database. Only the superuser can update the attendance of a student.<br>
-**Django** web framework was used for the development of the whole web app. **OpenCv** were used for the development of Face Recognizer. The Face Recognizer can detect multiple faces at a time and mark their attendance into Database.<br>
-**Note: Python version 3.6 was used for this project. And the dlib package required for installation of face_recognition api is also uploaded.**<br>
-To run the web app on your local computer, install the required libraries([requirements.txt]using the command:<br>
-```python
-pip3 install -r requirements.txt
-``` 
-<br>and run the following command in the command prompt:<br>
-```python
-python manage.py runserver
-``` 
+# Face-recognition-registration-and-login-system-OpenCv-Django
 
-**To create your own credential for logging into the application**<br/>
-```python
-python manage.py createsuperuser
-```
-<br/>
-After running the above command and creating the credentials, you can use the same credentials for logging in.<br/>
+# Requirements
+- Basic Django
+- Basic Python and knowledge about OOP
+- A good IDE like pycharm
+
+# Instalisation
+
+- Linux:
+``` pip3 install django ```  
+``` pip3 in opencv-python==3.4.2.17 ```
+- Windows:
+``` pip install django ```
+``` pip3 in opencv-python==3.4.2.17 ```
+
+# Project creation command:
+``` django-admin startproject Face-recognition-registration-and-login-system-OpenCv-Django```
+
+# Important command for this project-
+``` python3 manage.py startapp app_name ``` - **For Creating App**  
+``` python3 manage.py makemigrations``` - **Migrations Model**  
+``` python3 manage.py migrate```- **For migrating to Database** 
+
+# Descriptions
+
+This is ML base face recognition system. Using that we can register and recognise face of person.
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <video id="video" width="640" height="480" autoplay muted></video>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/opencv-js/4.7.0-dev/opencv.js"></script>
+  <script>
+    const video = document.getElementById("video");
+    let stream;
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(mediaStream) {
+        stream = mediaStream;
+        video.srcObject = stream;
+      })
+      .catch(function(err) {
+        console.log("Error accessing camera:", err);
+      });
+
+    // Your existing face recognition logic here using OpenCV.js
+    // ... (replace with your code to detect faces and identify person)
+
+    function sendAttendance(id) {
+      fetch('/mark-attendance/', {  // Send POST request to the view
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({id: id})
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.message);  // Display message from Django view (optional)
+      });
+    }
+
+    // After recognizing a face, call sendAttendance with the ID
+    if (recognized_id) {  // Assuming your logic sets recognized_id
+      sendAttendance(recognized_id);
+    }
+  </script>
+</body>
+</html>
