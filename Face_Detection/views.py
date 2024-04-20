@@ -45,7 +45,7 @@ def addFace(face_id):
     faceRecognition.trainFace()
     return redirect('/')
 
- def login(request):
+def login(request):
      face_id = faceRecognition.recognizeFace()
      print(face_id)
      return redirect('staff' )
