@@ -1,5 +1,5 @@
 Django
-opencv-python[contrib]
+opencv-contrib-python
 psycopg2
 dj_database_url
 gunicorn
