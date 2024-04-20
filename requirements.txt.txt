@@ -1,0 +1,5 @@
+Django
+opencv-python
+psycog2
+dj_database_url
+gunicorn
