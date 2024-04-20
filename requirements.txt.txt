@@ -3,3 +3,4 @@ opencv-python
 psycopg2
 dj_database_url
 gunicorn
+pillow
