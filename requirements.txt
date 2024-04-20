@@ -1,5 +1,6 @@
 Django
-opencv-python
-psycog2
+opencv-python[contrib]
+psycopg2
 dj_database_url
 gunicorn
+pillow
