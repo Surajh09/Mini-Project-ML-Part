@@ -1,5 +1,5 @@
 Django
-opencv-contrib-python
+opencv-contrib-python==4.1.2.30
 psycopg2
 dj_database_url
 gunicorn
