@@ -1,5 +1,4 @@
 Django
-opencv-python
 opencv-python[contrib]
 psycopg2
 dj_database_url
