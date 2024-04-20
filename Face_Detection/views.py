@@ -57,10 +57,10 @@ def Greeting(request,face_id):
     }
     return render(request,'faceDetection/greeting.html',context=context)
 
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login  # For user authentication (optional)
-from .models import Attendance, UserProfile
-import json
+#from django.shortcuts import render, redirect
+#from django.contrib.auth import authenticate, login  # For user authentication (optional)
+#from .models import Attendance, UserProfile
+#import json
 
 # def login(request):
 #    if request.method == 'POST':
