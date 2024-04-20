@@ -1,4 +1,4 @@
-import cv2
+import opencv as cv2
 import os
 # import sqlite3
 import numpy as np
