@@ -45,10 +45,10 @@ def addFace(face_id):
     faceRecognition.trainFace()
     return redirect('/')
 
-# def login(request):
-#     face_id = faceRecognition.recognizeFace()
-#     print(face_id)
-#     return redirect('staff' )
+ def login(request):
+     face_id = faceRecognition.recognizeFace()
+     print(face_id)
+     return redirect('staff' )
 
 def Greeting(request,face_id):
     face_id = int(face_id)
@@ -62,28 +62,28 @@ from django.contrib.auth import authenticate, login  # For user authentication (
 from .models import Attendance, UserProfile
 import json
 
-def login(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        recognized_id = data.get("id")
-
+# def login(request):
+#    if request.method == 'POST':
+#        data = json.loads(request.body)
+#       recognized_id = data.get("id")
+#
         # Assuming your logic (replace with your actual implementation)
         # This logic should retrieve the student object based on the recognized_id
         # (e.g., face recognition, unique identifier mapping, etc.)
-        student = None
+#        student = None
         # ... your logic here
 
-        if student:
+#        if student:
             # Mark attendance
-            Attendance.objects.create(student=student)
-            return JsonResponse({"message": "Attendance marked successfully!"})
+#            Attendance.objects.create(student=student)
+#            return JsonResponse({"message": "Attendance marked successfully!"})
 
-        else:
-            return JsonResponse({"message": "ID not found or invalid!"})
+#        else:
+#            return JsonResponse({"message": "ID not found or invalid!"})
 
     # Authentication logic (optional)
-    if request.user.is_authenticated:
-        return redirect('home')  # Redirect to homepage after successful login
+#    if request.user.is_authenticated:
+#        return redirect('home')  # Redirect to homepage after successful login
 
     # Render login template (optional)
-    return render(request, 'faceDetection/login.html')
+#    return render(request, 'faceDetection/login.html')
