@@ -8,6 +8,18 @@ from FaceDetection.settings import BASE_DIR
 detector = cv2.CascadeClassifier(BASE_DIR+'/Face_Detection/haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
+
+# # Create a connection witn databse
+# conn = sqlite3.connect('db.sqlite3')
+# if conn != 0:
+#     print("Connection Successful")
+# else:
+#     print('Connection Failed')
+#     exit()
+
+# Creating table if it doesn't already exists
+# conn.execute('''create table if not exists facedata ( id int primary key, name char(20) not null)''')
+
 class FaceRecognition:    
 
     def faceDetect(self, Entry1,):
@@ -82,77 +94,10 @@ class FaceRecognition:
         print("\n {0} faces trained. Exiting Program".format(len(np.unique(ids))))
 
 
-    # def recognizeFace(self):
-    #     recognizer.read(BASE_DIR+'/Face_Detection/trainer/trainer.yml')
-    #     cascadePath = BASE_DIR+'/Face_Detection/haarcascade_frontalface_default.xml'
-    #     faceCascade = cv2.CascadeClassifier(cascadePath)
-
-    #     font = cv2.FONT_HERSHEY_SIMPLEX
-
-    #     confidence = 0
-    #     cam = cv2.VideoCapture(0)
-
-    #     # Define min window size to be recognized as a face
-    #     minW = 0.1*cam.get(3)
-    #     minH = 0.1*cam.get(4)
-
-    #     while True:
-
-    #         ret, img =cam.read()
-
-    #         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-
-    #         faces = faceCascade.detectMultiScale( 
-    #             gray,
-    #             scaleFactor = 1.2,
-    #             minNeighbors = 5,
-    #             minSize = (int(minW), int(minH)),
-    #         )
-
-    #         for(x,y,w,h) in faces:
-
-    #             cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
-
-    #             face_id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
-
-    #             # Check if confidence is less then 100 ==> "0" is perfect match 
-    #             if (confidence < 100):
-    #                 name = 'Detected'
-    #             else:
-    #                 name = "Unknown"
-                
-    #             cv2.putText(img, str(name), (x+5,y-5), font, 1, (255,255,255), 2)
-    #             cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)  
-            
-    #         cv2.imshow('Detect Face',img) 
-
-    #         k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
-    #         if k == 27:
-    #             break
-    #         if confidence > 50:
-    #             break
-
-    #     print("\n Exiting Program")
-    #     cam.release()
-    #     cv2.destroyAllWindows()
-    #     print(face_id)
-    #     return face_id
-
     def recognizeFace(self):
-        try:
-            recognizer = cv2.face.LBPHFaceRecognizer_create()
-            recognizer.read(BASE_DIR + '/Face_Detection/trainer/trainer.yml')
-        except Exception as e:
-            print("Error reading model:", e)
-            return -1
-
-        # Error handling for cascade classifier loading
-        try:
-            cascadePath = BASE_DIR + '/Face_Detection/haarcascade_frontalface_default.xml'
-            faceCascade = cv2.CascadeClassifier(cascadePath)
-        except Exception as e:
-            print("Error loading cascade classifier:", e)
-            return -1
+        recognizer.read(BASE_DIR+'/Face_Detection/trainer/trainer.yml')
+        cascadePath = BASE_DIR+'/Face_Detection/haarcascade_frontalface_default.xml'
+        faceCascade = cv2.CascadeClassifier(cascadePath)
 
         font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -160,64 +105,47 @@ class FaceRecognition:
         cam = cv2.VideoCapture(0)
 
         # Define min window size to be recognized as a face
-        minW = 0.1 * cam.get(3)
-        minH = 0.1 * cam.get(4)
+        minW = 0.1*cam.get(3)
+        minH = 0.1*cam.get(4)
 
         while True:
-            ret, img = cam.read()
 
-            if not ret:
-                print("Error reading camera frame")
-                break
+            ret, img =cam.read()
 
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
-            # Error handling for face detection
-            try:
-                faces = faceCascade.detectMultiScale(
-                    gray,
-                    scaleFactor=1.2,
-                    minNeighbors=5,
-                    minSize=(int(minW), int(minH)),
-                )
-            except Exception as e:
-                print("Error detecting faces:", e)
-                continue
+            faces = faceCascade.detectMultiScale( 
+                gray,
+                scaleFactor = 1.2,
+                minNeighbors = 5,
+                minSize = (int(minW), int(minH)),
+            )
 
-            for (x, y, w, h) in faces:
-                cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            for(x,y,w,h) in faces:
 
-                # Error handling for model prediction
-                try:
-                    face_id, confidence = recognizer.predict(gray[y:y + h, x:x + w])
-                except Exception as e:
-                    print("Error predicting face:", e)
-                    continue
+                cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
 
-                # Check if confidence is less than 100 ==> "0" is perfect match
-                if confidence < 100:
+                face_id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
+
+                # Check if confidence is less then 100 ==> "0" is perfect match 
+                if (confidence < 100):
                     name = 'Detected'
                 else:
                     name = "Unknown"
+                
+                cv2.putText(img, str(name), (x+5,y-5), font, 1, (255,255,255), 2)
+                cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)  
+            
+            cv2.imshow('Detect Face',img) 
 
-                cv2.putText(img, str(name), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
-                cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
+            k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
+            if k == 27:
+                break
+            if confidence > 50:
+                break
 
-                cv2.imshow('Detect Face', img)
-
-                k = cv2.waitKey(10) & 0xff  # Press 'ESC' for exiting video
-                if k == 27:
-                    break
-                if confidence > 50:
-                    break
-
-            cam.release()
-            cv2.destroyAllWindows()
-
-        # Print face ID only if successful prediction occurred
-        if confidence < 100:
-            print("\nFace ID:", face_id)
-        else:
-            print("\nNo face recognized with sufficient confidence.")
-
+        print("\n Exiting Program")
+        cam.release()
+        cv2.destroyAllWindows()
+        print(face_id)
         return face_id
