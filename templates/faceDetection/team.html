@@ -1,4 +1,6 @@
-{% extends "faceDetection/base.html" %} {% block content %}
+{% extends "faceDetection/base.html" %}
+{% block content %}
+{% load static %}
 <!-- ====== Team Section Start -->
 <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-dark">
   <div class="container mx-auto">
@@ -23,8 +25,7 @@
         <div class="mx-auto mb-10 w-full max-w-[370px]">
           <div class="relative overflow-hidden rounded-lg">
             <img
-              src="suraj.jpg"
-              alt="image"
+              src="{% static '/suraj.jpg' %}"
               class="w-full" />
             <div class="absolute bottom-5 left-0 w-full text-center">
               <div
@@ -33,7 +34,7 @@
                     Suraj Hemnani
                 </h3>
                 <p class="text-body-color dark:text-dark-6 text-xs">
-                    Team Lead, DevOps
+                    Team Lead & DevOps
                 </p>
                 <div>
                   <span class="absolute left-0 bottom-0">
@@ -190,7 +191,7 @@
         <div class="mx-auto mb-10 w-full max-w-[370px]">
           <div class="relative overflow-hidden rounded-lg">
             <img
-              src="swarnjeet.jpg"
+              src="{%static 'swarnjeet.jpg'%}"
               alt="image"
               class="w-full" />
             <div class="absolute bottom-5 left-0 w-full text-center">
@@ -357,7 +358,7 @@
         <div class="mx-auto mb-10 w-full max-w-[370px]">
           <div class="relative overflow-hidden rounded-lg">
             <img
-              src="sejal.jpeg"
+              src="{%static 'sejal.jpeg'%}"
               alt="image"
               class="w-full" />
             <div class="absolute bottom-5 left-0 w-full text-center">
@@ -524,7 +525,7 @@
         <div class="mx-auto mb-10 w-full max-w-[370px]">
           <div class="relative overflow-hidden rounded-lg">
             <img
-              src="suraj.jpg"
+              src="{%static "premendra.jpeg"%}"
               alt="image"
               class="w-full" />
             <div class="absolute bottom-5 left-0 w-full text-center">
@@ -534,7 +535,7 @@
                     Premendra Engley
                 </h3>
                 <p class="text-body-color dark:text-dark-6 text-xs">
-                    Android developer
+                    Team Lead & Android developer
                 </p>
                 <div>
                   <span class="absolute left-0 bottom-0">
@@ -688,7 +689,7 @@
         </div>
       </div>
       </div>
-      <div class="w-full h-32 px-4 md:w-1/2 xl:w-1/4">
+      {% comment %} <div class="w-full h-32 px-4 md:w-1/2 xl:w-1/4">
         <div class="mx-auto mb-10 w-full max-w-[370px]">
           <div class="relative overflow-hidden rounded-lg">
             <img
@@ -854,7 +855,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </div>
 </section>
