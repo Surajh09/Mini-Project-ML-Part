@@ -114,8 +114,38 @@ class FaceRecognition:
         minH = 0.1*cam.get(4)
 
         while True:
+            ret, img = cam.read()
+            print(img)
+            print(ret)
+            
+            if not ret:
+                print("Failed to capture frame from camera.")
+                break
+            
+            # Ensure img is not empty
+            if img is None:
+                print("Failed to capture frame from camera.")
+                continue
+            
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            faces = detector.detectMultiScale(gray, 1.3, 5)
 
-            ret, img =cam.read()
+            for (x,y,w,h) in faces:
+                cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)
+                count += 1
+
+                # Save the captured image into the datasets folder
+                cv2.imwrite(BASE_DIR+'/Face_Detection/dataset/User.' + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
+
+                cv2.imshow('Register Face', img)
+
+            k = cv2.waitKey(100) & 0xff # Press 'ESC' for exiting video
+            if k == 27:
+                break
+            elif count >= 30: # Take 30 face sample and stop video
+                break
+
+        while True:
             print(img)
             print(ret)
 
