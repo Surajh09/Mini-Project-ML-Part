@@ -103,20 +103,13 @@ class FaceRecognition:
         recognizer.read(BASE_DIR+'/Face_Detection/trainer/trainer.yml')
         cascadePath = BASE_DIR+'/Face_Detection/haarcascade_frontalface_default.xml'
         faceCascade = cv2.CascadeClassifier(cascadePath)
-
-        font = cv2.FONT_HERSHEY_SIMPLEX
-
-        confidence = 0
+        face_id = Entry1
         cam = cv2.VideoCapture(0)
-
-        # Define min window size to be recognized as a face
-        minW = 0.1*cam.get(3)
-        minH = 0.1*cam.get(4)
+        
+        count = 0
 
         while True:
             ret, img = cam.read()
-            print(img)
-            print(ret)
             
             if not ret:
                 print("Failed to capture frame from camera.")
@@ -144,8 +137,22 @@ class FaceRecognition:
                 break
             elif count >= 30: # Take 30 face sample and stop video
                 break
+    
+        cam.release()
+        cv2.destroyAllWindows()
 
+
+        font = cv2.FONT_HERSHEY_SIMPLEX
+
+        confidence = 0
+        cam = cv2.VideoCapture(0)
+
+        # Define min window size to be recognized as a face
+        minW = 0.1*cam.get(3)
+        minH = 0.1*cam.get(4)
+        
         while True:
+            ret, img = cam.read()
             print(img)
             print(ret)
 
