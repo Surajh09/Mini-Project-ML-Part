@@ -58,7 +58,3 @@ This Django project integrates face detection functionality into a web applicati
 ## Contributing
 
 Contributions are welcome! If you have any suggestions, improvements, or new features to add, feel free to open an issue or create a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
