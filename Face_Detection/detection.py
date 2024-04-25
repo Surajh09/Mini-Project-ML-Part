@@ -111,6 +111,8 @@ class FaceRecognition:
         while True:
 
             ret, img =cam.read()
+            print(img)
+            print(ret)
 
             gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
