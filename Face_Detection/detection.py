@@ -20,24 +20,30 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 # Creating table if it doesn't already exists
 # conn.execute('''create table if not exists facedata ( id int primary key, name char(20) not null)''')
 
-class FaceRecognition:    
-
-    def faceDetect(self, Entry1,):
+class FaceRecognition:
+    
+    def faceDetect(self, Entry1):
         face_id = Entry1
         cam = cv2.VideoCapture(0)
         
-
         count = 0
 
-        while(True):
-
+        while True:
             ret, img = cam.read()
-            # img = cv2.flip(img, -1) # flip video image vertically
+            
+            if not ret:
+                print("Failed to capture frame from camera.")
+                break
+            
+            # Ensure img is not empty
+            if img is None:
+                print("Failed to capture frame from camera.")
+                continue
+            
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             faces = detector.detectMultiScale(gray, 1.3, 5)
 
             for (x,y,w,h) in faces:
-
                 cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)
                 count += 1
 
@@ -51,7 +57,6 @@ class FaceRecognition:
                 break
             elif count >= 30: # Take 30 face sample and stop video
                 break
-    
     
         cam.release()
         cv2.destroyAllWindows()
