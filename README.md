@@ -6,8 +6,8 @@ This Django project integrates face detection functionality into a web applicati
 ## Installation
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/django-face-detection.git
+    ```bash[
+        git clone https://github.com/Surajh09/Mini-Project-ML-Part.git
     ```
 2. Navigate into the project directory:
     ```bash
