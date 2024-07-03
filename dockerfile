@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 8000
 
 # Entrypoint (replace with your application's startup command)
-CMD [ "python", "your_script.py" ]
+CMD [ "python", "manage.py", "runserver" ]
